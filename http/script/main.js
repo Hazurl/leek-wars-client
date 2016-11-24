@@ -2688,6 +2688,17 @@ LW.consoleAlertMessage = function() {
 	}
 }
 
+LW.toastHabs = function(value) {
+	var toast = $("<div class='habs-toast'><span class='text'>" + value + "</span></div>")
+	
+	if(value > 0)
+		toast.addClass('habs-toast-green')
+	else
+		toast.addClass('habs-toast-red')
+
+	$('#habs-toasts-wrapper').append(toast)
+}
+
 LW.updateHabs = function(delta) {
 	LW.farmer.habs += delta
 	$('#farmer-habs').html(_.format.number(LW.farmer.habs))

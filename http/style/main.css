@@ -1799,6 +1799,34 @@ input:active, input:focus {
 }
 
 /*
+ * Habs toasts
+ */
+
+#habs-toasts-wrapper {
+	position: relative;
+	text-align: center;
+	top: -20px;
+	left: 10px;
+}
+
+.habs-toast {
+	position: absolute;
+
+	line-height: 42px;
+	height: 42px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.habs-toast-green {
+	color: green;
+}
+
+.habs-toast-red {
+	color: red;
+}
+
+/*
  * Fight history
  */
 .fight-history {
