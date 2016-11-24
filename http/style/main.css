@@ -1804,18 +1804,17 @@ input:active, input:focus {
 
 #habs-toasts-wrapper {
 	position: relative;
-	text-align: center;
-	top: -20px;
-	left: 10px;
+	float: left;
+    height: 42px;
+
+	line-height: 42px;
+    font-size: 17px;
+	text-align: right;
+	vertical-align: top;
 }
 
 .habs-toast {
 	position: absolute;
-
-	line-height: 42px;
-	height: 42px;
-	display: inline-block;
-	vertical-align: top;
 }
 
 .habs-toast-green {
@@ -2541,6 +2540,7 @@ textarea.autogrow {
 	#header .button-wrapper:first-child .header-button:before {
 		display: none;
 	}
+
 }
 
 @media screen and (max-width: 999px) {

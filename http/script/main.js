@@ -2689,7 +2689,8 @@ LW.consoleAlertMessage = function() {
 }
 
 LW.toastHabs = function(value) {
-	var toast = $("<div class='habs-toast'><span class='text'>" + value + "</span></div>")
+	var toast = $("<div class='habs-toast'><span class='text'>" + _.format.number(value) + "</span></div>")
+	toast.width($("#farmer-habs").width())
 	
 	if(value > 0)
 		toast.addClass('habs-toast-green')
@@ -2697,11 +2698,29 @@ LW.toastHabs = function(value) {
 		toast.addClass('habs-toast-red')
 
 	$('#habs-toasts-wrapper').append(toast)
+
+	var px = 0
+	var opacity = 40
+
+	var idInterval = setInterval(function() {
+		toast.css({
+			'top': px + 'px',
+			'opacity': opacity/40 
+		});
+		px++
+		opacity--
+
+		if(px > 40) {
+			clearInterval(idInterval)
+			toast.remove()
+		}
+	}, 30)
 }
 
 LW.updateHabs = function(delta) {
 	LW.farmer.habs += delta
 	$('#farmer-habs').html(_.format.number(LW.farmer.habs))
+	LW.toastHabs(delta)
 }
 
 LW.setHabs = function(habs) {
