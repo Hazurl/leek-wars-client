@@ -769,7 +769,34 @@ LW.pages.leek.weapons = function(leek) {
 
 LW.pages.leek.chips = function(leek) {
 
-	var popup = new _.popup.new('leek.chip_popup', {leek: leek, farmer_chips: LW.farmer.chips}, 800)
+	var chipsByType = {}
+	var sortedChips = []
+
+	for(var i in LW.farmer.chips) {
+		var chip = LW.farmer.chips[i]
+		var type = LW.chips[chip.template].effects[0].type
+
+		if(!chipsByType[type]) {
+			chipsByType[type] = {}
+		}
+
+		if(!chipsByType[type][chip.template]) {
+			chip.count = 1
+			chip.type = type
+			chipsByType[type][chip.template] = chip
+		}
+		else {
+			chipsByType[type][chip.template].count++
+		}
+	}
+
+	for(var i in chipsByType) {
+		for(var y in chipsByType[i]) {
+			sortedChips.push(chipsByType[i][y])
+		}
+	}
+
+	var popup = new _.popup.new('leek.chip_popup', {leek: leek, farmer_chips: sortedChips}, 800)
 	var draggedChip = null
 
 	var changeChip = function(action, chipID) {
